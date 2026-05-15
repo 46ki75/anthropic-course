@@ -5,7 +5,7 @@ from dotenv import load_dotenv
 load_dotenv()
 
 from anthropic import Anthropic
-from anthropic.types import MessageParam
+from anthropic.types import MessageParam, TextBlock
 
 client = Anthropic()
 model = "claude-haiku-4-5"
@@ -27,7 +27,10 @@ def chat(messages: list[MessageParam]) -> str:
         max_tokens=1000,
         messages=messages,
     )
-    return str(message.content[0].text)
+    block = message.content[0]
+    if not isinstance(block, TextBlock):
+        raise RuntimeError(f"Expected TextBlock, got {type(block).__name__}")
+    return block.text
 
 
 messages: list[MessageParam] = []
