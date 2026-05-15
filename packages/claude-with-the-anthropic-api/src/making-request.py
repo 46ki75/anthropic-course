@@ -3,6 +3,7 @@ from dotenv import load_dotenv
 load_dotenv()
 
 from anthropic import Anthropic
+from anthropic.types import TextBlock
 
 client = Anthropic()
 model = "claude-haiku-4-5"
@@ -16,4 +17,5 @@ message = client.messages.create(
 )
 
 for content in message.content:
-    print(content.text)
+    if isinstance(content, TextBlock):
+        print(content.text)

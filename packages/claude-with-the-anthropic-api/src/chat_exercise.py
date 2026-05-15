@@ -1,4 +1,4 @@
-# https://anthropic.skilljar.com/claude-with-the-anthropic-api/287735
+# https://anthropic.skilljar.com/claude-with-the-anthropic-api/287727
 
 from dotenv import load_dotenv
 
@@ -35,18 +35,43 @@ def chat(messages: list[MessageParam]) -> str:
 
 messages: list[MessageParam] = []
 
-add_user_message(messages, "Define quantum computing in one sentence")
 
-answer = chat(messages)
+def exit():
+    print()
+    print("Bye!")
 
-add_assistant_message(messages, answer)
 
-add_user_message(messages, "Write another sentence")
+def handle_input(line: str):
+    add_user_message(messages, f"{line!r}")
+    response = chat(messages)
+    add_assistant_message(messages, response)
+    print()
+    print("| Assistant |")
+    print(response)
+    print()
 
-answer = chat(messages)
 
-add_assistant_message(messages, answer)
+def repl():
+    while True:
 
-for message in messages:
-    print(f"\n| {message['role'].capitalize()} |")
-    print(message["content"])
+        try:
+            print("| User |")
+            line = input(">>> ")
+        except (EOFError, KeyboardInterrupt):
+            exit()
+            break
+
+        line = line.strip()
+
+        if not line:
+            continue
+
+        if line in ("exit", "quit"):
+            exit()
+            break
+
+        handle_input(line)
+
+
+if __name__ == "__main__":
+    repl()
