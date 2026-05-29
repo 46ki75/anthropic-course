@@ -1,9 +1,9 @@
 from dotenv import load_dotenv
+from anthropic import Anthropic
+from anthropic.types import TextBlock
 
 load_dotenv()
 
-from anthropic import Anthropic
-from anthropic.types import TextBlock
 
 client = Anthropic()
 model = "claude-haiku-4-5"

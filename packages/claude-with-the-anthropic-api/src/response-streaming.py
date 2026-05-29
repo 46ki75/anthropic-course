@@ -1,8 +1,8 @@
 from dotenv import load_dotenv
+from anthropic import Anthropic
 
 load_dotenv()
 
-from anthropic import Anthropic
 
 client = Anthropic()
 model = "claude-haiku-4-5"
