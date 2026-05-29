@@ -12,8 +12,16 @@ with client.messages.stream(
     model=model,
     max_tokens=1000,
     messages=[
-        {"role": "user", "content": "What is quantum computing? Answer in one sentence"}
+        {
+            "role": "user",
+            "content": "Generate three different sample AWS CLI commands. Each should be very short.",
+        },
+        {
+            "role": "assistant",
+            "content": "```bash",
+        },
     ],
+    stop_sequences=["```"],
 ) as stream:
     for text in stream.text_stream:
         print(text, end="")

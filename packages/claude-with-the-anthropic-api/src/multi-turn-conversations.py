@@ -1,11 +1,11 @@
 # https://anthropic.skilljar.com/claude-with-the-anthropic-api/287735
 
 from dotenv import load_dotenv
+from anthropic import Anthropic
+from anthropic.types import MessageParam, TextBlock
 
 load_dotenv()
 
-from anthropic import Anthropic
-from anthropic.types import MessageParam, TextBlock
 
 client = Anthropic()
 model = "claude-haiku-4-5"
