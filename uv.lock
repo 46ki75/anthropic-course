@@ -68,12 +68,14 @@ version = "0.1.0"
 source = { virtual = "packages/claude-with-the-anthropic-api" }
 dependencies = [
     { name = "anthropic" },
+    { name = "pydantic" },
     { name = "python-dotenv" },
 ]
 
 [package.metadata]
 requires-dist = [
     { name = "anthropic", specifier = ">=0.101.0" },
+    { name = "pydantic", specifier = ">=2.13.4" },
     { name = "python-dotenv", specifier = ">=1.2.2" },
 ]
 

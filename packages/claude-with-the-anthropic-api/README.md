@@ -22,3 +22,6 @@
   - [Prompt evaluation](https://anthropic.skilljar.com/claude-with-the-anthropic-api/287731)
   - [A typical eval workflow](https://anthropic.skilljar.com/claude-with-the-anthropic-api/287736)
   - [Generating test datasets](https://anthropic.skilljar.com/claude-with-the-anthropic-api/287739)
+    - Script: [`generating_test_dataset.py`](./src/generating_test_dataset.py)
+  - [Running the eval](https://anthropic.skilljar.com/claude-with-the-anthropic-api/287743)
+    - Script: [`running_the_eval.py`](./src/running_the_eval.py)
