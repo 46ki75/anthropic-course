@@ -18,3 +18,7 @@
   - [Reponse Streaming](https://anthropic.skilljar.com/claude-with-the-anthropic-api/287734)
   - [Structured Data](https://anthropic.skilljar.com/claude-with-the-anthropic-api/287732)
   - [Structured Data Exercise](https://anthropic.skilljar.com/claude-with-the-anthropic-api/287729)
+- Prompt evaluation
+  - [Prompt evaluation](https://anthropic.skilljar.com/claude-with-the-anthropic-api/287731)
+  - [A typical eval workflow](https://anthropic.skilljar.com/claude-with-the-anthropic-api/287736)
+  - [Generating test datasets](https://anthropic.skilljar.com/claude-with-the-anthropic-api/287739)
