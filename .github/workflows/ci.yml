@@ -27,3 +27,20 @@ jobs:
 
       - name: Type check (pyright)
         run: uv run pyright
+
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up uv
+        uses: astral-sh/setup-uv@v8.1.0
+        with:
+          enable-cache: true
+
+      - name: Install dependencies
+        run: uv sync --frozen
+
+      - name: Test (pytest)
+        working-directory: packages/claude-with-the-anthropic-api
+        run: uv run pytest
