@@ -25,3 +25,5 @@
     - Script: [`generating_test_dataset.py`](./src/generating_test_dataset.py)
   - [Running the eval](https://anthropic.skilljar.com/claude-with-the-anthropic-api/287743)
     - Script: [`running_the_eval.py`](./src/running_the_eval.py)
+  - [Model based grading](https://anthropic.skilljar.com/claude-with-the-anthropic-api/287742)
+    - Script: [`running_the_eval.py`](./src/grage_by_model.py)
