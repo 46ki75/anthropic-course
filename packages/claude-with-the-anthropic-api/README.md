@@ -27,3 +27,5 @@
     - Script: [`running_the_eval.py`](./src/running_the_eval.py)
   - [Model based grading](https://anthropic.skilljar.com/claude-with-the-anthropic-api/287742)
     - Script: [`running_the_eval.py`](./src/grage_by_model.py)
+  - [Code based grading](https://anthropic.skilljar.com/claude-with-the-anthropic-api/287737)
+    - Script: [`running_the_eval.py`](./src/grage_by_model.py)

@@ -1,4 +1,6 @@
 import json
+import ast
+import re
 from statistics import mean
 
 from anthropic.types import MessageParam
@@ -21,6 +23,9 @@ class TestResult(BaseModel):
 def run_prompt(test_case: TestCase):
     """Merges the prompt and test case input, then returns the result"""
     prompt = f"""
+* Respond only with Python, JSON, or a plain Regex
+* Do not add any comments or commentary or explanation
+
 Please solve the following task:
 
 {test_case.task}
@@ -28,7 +33,8 @@ Please solve the following task:
 
     messages: list[MessageParam] = []
     add_user_message(messages, prompt)
-    output = chat(messages)
+    add_assistant_message(messages, "```code")
+    output = chat(messages, stop_sequences=["```code"])
     return output
 
 
@@ -53,6 +59,30 @@ def grade_by_model(test_case: TestCase, output: str):
 
     eval_text = chat(messages, stop_sequences=["```"])
     return json.loads(eval_text)
+
+
+def validate_json(text: str):
+    try:
+        json.loads(text.strip())
+        return 10
+    except json.JSONDecodeError:
+        return 0
+
+
+def validate_python(text: str):
+    try:
+        ast.parse(text.strip())
+        return 10
+    except SyntaxError:
+        return 0
+
+
+def validate_regex(text: str):
+    try:
+        re.compile(text.strip())
+        return 10
+    except re.error:
+        return 0
 
 
 def run_test_case(test_case: TestCase) -> TestResult:
@@ -89,3 +119,6 @@ if __name__ == "__main__":
 
     results = run_eval(dataset)
     print(json.dumps([r.model_dump() for r in results], indent=2))
+
+    with open("dist/eval.json", "w") as f:
+        json.dump([r.model_dump() for r in results], f, indent=2)
