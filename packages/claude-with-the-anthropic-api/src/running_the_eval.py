@@ -1,6 +1,8 @@
 import json
 import ast
 import re
+from typing import Literal
+
 from statistics import mean
 
 from anthropic.types import MessageParam
@@ -11,12 +13,13 @@ from util import add_user_message, add_assistant_message, chat
 
 class TestCase(BaseModel):
     task: str
+    format: str
 
 
 class TestResult(BaseModel):
     output: str
     test_case: TestCase
-    score: int
+    score: float
     reasoning: str
 
 
@@ -61,7 +64,7 @@ def grade_by_model(test_case: TestCase, output: str):
     return json.loads(eval_text)
 
 
-def validate_json(text: str):
+def validate_json(text: str) -> Literal[0, 10]:
     try:
         json.loads(text.strip())
         return 10
@@ -69,7 +72,7 @@ def validate_json(text: str):
         return 0
 
 
-def validate_python(text: str):
+def validate_python(text: str) -> Literal[0, 10]:
     try:
         ast.parse(text.strip())
         return 10
@@ -77,12 +80,24 @@ def validate_python(text: str):
         return 0
 
 
-def validate_regex(text: str):
+def validate_regex(text: str) -> Literal[0, 10]:
     try:
         re.compile(text.strip())
         return 10
     except re.error:
         return 0
+
+
+def grade_syntax(text: str, test_case: TestCase) -> Literal[0, 10]:
+    match test_case.format:
+        case "json":
+            return validate_json(text)
+        case "python":
+            return validate_python(text)
+        case "regex":
+            return validate_regex(text)
+        case _:
+            return 0
 
 
 def run_test_case(test_case: TestCase) -> TestResult:
@@ -91,8 +106,12 @@ def run_test_case(test_case: TestCase) -> TestResult:
 
     # Grade the output
     model_grade = grade_by_model(test_case, output)
-    score = model_grade["score"]
+    model_score = model_grade["score"]
     reasoning = model_grade["reasoning"]
+
+    syntax_score = grade_syntax(output, test_case)
+
+    score = (model_score + syntax_score) / 2
 
     return TestResult(
         output=output, test_case=test_case, score=score, reasoning=reasoning
