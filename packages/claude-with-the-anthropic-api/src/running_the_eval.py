@@ -23,6 +23,13 @@ class TestResult(BaseModel):
     reasoning: str
 
 
+class ModelGrade(BaseModel):
+    strengths: list[str]
+    weaknesses: list[str]
+    reasoning: str
+    score: float
+
+
 def run_prompt(test_case: TestCase):
     """Merges the prompt and test case input, then returns the result"""
     prompt = f"""
@@ -41,7 +48,7 @@ Please solve the following task:
     return output
 
 
-def grade_by_model(test_case: TestCase, output: str):
+def grade_by_model(test_case: TestCase, output: str) -> ModelGrade:
     # Create evaluation prompt
     eval_prompt = f"""
     You are an expert code reviewer. Evaluate this AI-generated solution.
@@ -61,7 +68,7 @@ def grade_by_model(test_case: TestCase, output: str):
     add_assistant_message(messages, "```json")
 
     eval_text = chat(messages, stop_sequences=["```"])
-    return json.loads(eval_text)
+    return ModelGrade.model_validate_json(eval_text)
 
 
 def validate_json(text: str) -> Literal[0, 10]:
@@ -106,8 +113,8 @@ def run_test_case(test_case: TestCase) -> TestResult:
 
     # Grade the output
     model_grade = grade_by_model(test_case, output)
-    model_score = model_grade["score"]
-    reasoning = model_grade["reasoning"]
+    model_score = model_grade.score
+    reasoning = model_grade.reasoning
 
     syntax_score = grade_syntax(output, test_case)
 
