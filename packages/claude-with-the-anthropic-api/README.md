@@ -29,3 +29,11 @@
     - Script: [`running_the_eval.py`](./src/grage_by_model.py)
   - [Code based grading](https://anthropic.skilljar.com/claude-with-the-anthropic-api/287737)
     - Script: [`running_the_eval.py`](./src/grage_by_model.py)
+- Prompt engineering techniques
+  - [Prompt engineering](https://anthropic.skilljar.com/claude-with-the-anthropic-api/287745)
+  - [Being clear and direct](https://anthropic.skilljar.com/claude-with-the-anthropic-api/287744)
+  - [Being specific](https://anthropic.skilljar.com/claude-with-the-anthropic-api/287740)
+  - [Structure with XML tags](https://anthropic.skilljar.com/claude-with-the-anthropic-api/287741)
+  - [Providing examples](https://anthropic.skilljar.com/claude-with-the-anthropic-api/287746)
+  - [Exercise on prompting](https://anthropic.skilljar.com/claude-with-the-anthropic-api/287748)
+  - [Quiz on prompt engineering techniques](https://anthropic.skilljar.com/claude-with-the-anthropic-api/289121)
