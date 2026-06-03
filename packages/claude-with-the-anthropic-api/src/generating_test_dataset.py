@@ -2,7 +2,7 @@ import json
 
 from anthropic.types import MessageParam
 
-from util import add_assistant_message, add_user_message, chat
+from util import add_assistant_message, add_user_message, chat, text_from_message
 
 
 def generate_dataset():
@@ -28,7 +28,7 @@ Please generate 3 objects.
     messages: list[MessageParam] = []
     add_user_message(messages, prompt)
     add_assistant_message(messages, "```json")
-    text = chat(messages, stop_sequences=["```"])
+    text = text_from_message(chat(messages, stop_sequences=["```"]))
     return json.loads(text)
 
 
