@@ -43,3 +43,4 @@
   - [Tool functions](https://anthropic.skilljar.com/claude-with-the-anthropic-api/287756)
   - [Tool schemas](https://anthropic.skilljar.com/claude-with-the-anthropic-api/287753)
   - [Handling message blocks](https://anthropic.skilljar.com/claude-with-the-anthropic-api/287757)
+  - [Multi-turn conversations with tools](https://anthropic.skilljar.com/claude-with-the-anthropic-api/287750)
