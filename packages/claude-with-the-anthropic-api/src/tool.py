@@ -75,4 +75,4 @@ if __name__ == "__main__":
         messages=messages,
         tools=[get_current_datetime_schema],
     )
-    print(response)
+    print(response.content)
