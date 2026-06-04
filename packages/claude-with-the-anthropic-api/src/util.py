@@ -19,9 +19,7 @@ client = Anthropic()
 model = "claude-haiku-4-5"
 
 
-def add_user_message(
-    messages: list[MessageParam], message: MessageContent | Message
-):
+def add_user_message(messages: list[MessageParam], message: MessageContent | Message):
     content = message.content if isinstance(message, Message) else message
     messages.append({"role": "user", "content": content})
 
@@ -53,6 +51,4 @@ def chat(
 
 
 def text_from_message(message: Message) -> str:
-    return "\n".join(
-        [block.text for block in message.content if block.type == "text"]
-    )
+    return "\n".join([block.text for block in message.content if block.type == "text"])
