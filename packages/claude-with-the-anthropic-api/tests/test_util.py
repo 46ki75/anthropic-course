@@ -1,9 +1,16 @@
 import pytest
 from anthropic import omit
-from anthropic.types import MessageParam, TextBlock
+from anthropic.types import (
+    ContentBlock,
+    Message,
+    MessageParam,
+    TextBlock,
+    ToolUseBlock,
+    Usage,
+)
 
 import util
-from util import add_assistant_message, add_user_message, chat
+from util import add_assistant_message, add_user_message, chat, text_from_message
 
 
 def test_add_user_message_appends_role_and_content():
@@ -57,9 +64,10 @@ def stub_client(monkeypatch: pytest.MonkeyPatch):
     return client
 
 
-def test_chat_returns_first_text_block(stub_client: _StubClient):
+def test_chat_returns_message_with_text_content(stub_client: _StubClient):
     messages: list[MessageParam] = [{"role": "user", "content": "hi"}]
-    assert chat(messages) == "stubbed reply"
+    response = chat(messages)
+    assert text_from_message(response) == "stubbed reply"
 
 
 def test_chat_omits_system_and_stop_sequences_by_default(stub_client: _StubClient):
@@ -83,17 +91,20 @@ def test_chat_forwards_system_and_stop_sequences(stub_client: _StubClient):
     assert kwargs["temperature"] == 0.2
 
 
-def test_chat_raises_when_first_block_is_not_text(monkeypatch: pytest.MonkeyPatch):
-    class _NonTextResponse:
-        content = [object()]
-
-    class _NonTextMessages:
-        def create(self, **_: object):
-            return _NonTextResponse()
-
-    class _NonTextClient:
-        messages = _NonTextMessages()
-
-    monkeypatch.setattr(util, "client", _NonTextClient())
-    with pytest.raises(RuntimeError, match="Expected TextBlock"):
-        chat([{"role": "user", "content": "hi"}])
+def test_text_from_message_joins_text_blocks_and_skips_non_text():
+    content: list[ContentBlock] = [
+        TextBlock(type="text", text="first", citations=None),
+        ToolUseBlock(type="tool_use", id="toolu_1", name="noop", input={}),
+        TextBlock(type="text", text="second", citations=None),
+    ]
+    message = Message(
+        id="msg_test",
+        content=content,
+        model="claude-haiku-4-5",
+        role="assistant",
+        stop_reason="tool_use",
+        stop_sequence=None,
+        type="message",
+        usage=Usage(input_tokens=0, output_tokens=0),
+    )
+    assert text_from_message(message) == "first\nsecond"

@@ -37,3 +37,12 @@
   - [Providing examples](https://anthropic.skilljar.com/claude-with-the-anthropic-api/287746)
   - [Exercise on prompting](https://anthropic.skilljar.com/claude-with-the-anthropic-api/287748)
   - [Quiz on prompt engineering techniques](https://anthropic.skilljar.com/claude-with-the-anthropic-api/289121)
+- Tool use with Claude
+  - [Introducing tool use](https://anthropic.skilljar.com/claude-with-the-anthropic-api/287747)
+  - [Project overview](https://anthropic.skilljar.com/claude-with-the-anthropic-api/287751)
+  - [Tool functions](https://anthropic.skilljar.com/claude-with-the-anthropic-api/287756)
+  - [Tool schemas](https://anthropic.skilljar.com/claude-with-the-anthropic-api/287753)
+  - [Handling message blocks](https://anthropic.skilljar.com/claude-with-the-anthropic-api/287757)
+  - [Multi-turn conversations with tools](https://anthropic.skilljar.com/claude-with-the-anthropic-api/287750)
+  - [Implementing multiple turns](https://anthropic.skilljar.com/claude-with-the-anthropic-api/287758)
+  - [Using multiple tools](https://anthropic.skilljar.com/claude-with-the-anthropic-api/287749)

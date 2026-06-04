@@ -8,7 +8,7 @@ from statistics import mean
 from anthropic.types import MessageParam
 from pydantic import BaseModel
 
-from util import add_user_message, add_assistant_message, chat
+from util import add_user_message, add_assistant_message, chat, text_from_message
 
 
 class TestCase(BaseModel):
@@ -44,7 +44,7 @@ Please solve the following task:
     messages: list[MessageParam] = []
     add_user_message(messages, prompt)
     add_assistant_message(messages, "```code")
-    output = chat(messages, stop_sequences=["```code"])
+    output = text_from_message(chat(messages, stop_sequences=["```code"]))
     return output
 
 
@@ -67,7 +67,7 @@ def grade_by_model(test_case: TestCase, output: str) -> ModelGrade:
     add_user_message(messages, eval_prompt)
     add_assistant_message(messages, "```json")
 
-    eval_text = chat(messages, stop_sequences=["```"])
+    eval_text = text_from_message(chat(messages, stop_sequences=["```"]))
     return ModelGrade.model_validate_json(eval_text)
 
 
