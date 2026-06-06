@@ -46,3 +46,11 @@
   - [Multi-turn conversations with tools](https://anthropic.skilljar.com/claude-with-the-anthropic-api/287750)
   - [Implementing multiple turns](https://anthropic.skilljar.com/claude-with-the-anthropic-api/287758)
   - [Using multiple tools](https://anthropic.skilljar.com/claude-with-the-anthropic-api/287749)
+- RAG and Agentic Search
+  - [Introducing Retrieval Augmented Generation](https://anthropic.skilljar.com/claude-with-the-anthropic-api/287763)
+  - [Text chunking strategies](https://anthropic.skilljar.com/claude-with-the-anthropic-api/287776)
+  - [Text embeddings](https://anthropic.skilljar.com/claude-with-the-anthropic-api/287759)
+  - [The full RAG flow](https://anthropic.skilljar.com/claude-with-the-anthropic-api/287764)
+  - [Implementing the RAG flow](https://anthropic.skilljar.com/claude-with-the-anthropic-api/287761)
+  - [BM25 lexical search](https://anthropic.skilljar.com/claude-with-the-anthropic-api/287767)
+  - [A Multi-Index RAG pipeline](https://anthropic.skilljar.com/claude-with-the-anthropic-api/287766)
