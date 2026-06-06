@@ -54,3 +54,13 @@
   - [Implementing the RAG flow](https://anthropic.skilljar.com/claude-with-the-anthropic-api/287761)
   - [BM25 lexical search](https://anthropic.skilljar.com/claude-with-the-anthropic-api/287767)
   - [A Multi-Index RAG pipeline](https://anthropic.skilljar.com/claude-with-the-anthropic-api/287766)
+- Features of Claude
+  - [Extended thinking](https://anthropic.skilljar.com/claude-with-the-anthropic-api/287773)
+  - [Image support](https://anthropic.skilljar.com/claude-with-the-anthropic-api/287778)
+  - [PDF support](https://anthropic.skilljar.com/claude-with-the-anthropic-api/287768)
+  - [Citations](https://anthropic.skilljar.com/claude-with-the-anthropic-api/287771)
+  - [Prompt caching](https://anthropic.skilljar.com/claude-with-the-anthropic-api/287772)
+  - [Rules of prompt caching](https://anthropic.skilljar.com/claude-with-the-anthropic-api/287770)
+  - [Prompt caching in action](https://anthropic.skilljar.com/claude-with-the-anthropic-api/287774)
+  - [Code execution and the Files API](https://anthropic.skilljar.com/claude-with-the-anthropic-api/287777)
+  - [Quiz on features of Claude](https://anthropic.skilljar.com/claude-with-the-anthropic-api/289124)
